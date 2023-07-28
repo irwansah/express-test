@@ -2,9 +2,10 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY . /app
+COPY package.json /app      # Copy only the package.json file first
+RUN npm install --only=prod # Install only the production dependencies
 
-RUN npm install --omit=dev
+COPY . /app
 
 EXPOSE 80
 
